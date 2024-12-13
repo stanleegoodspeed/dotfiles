@@ -25,3 +25,37 @@ while read df; do
   mkdir -p "$(dirname "$link")"
   ln -sf "$df" "$link"
 done
+
+# Download and install Yarn 3.2.1
+YARN_VERSION="3.2.1"
+YARN_URL="https://github.com/yarnpkg/yarn/releases/download/v$YARN_VERSION/yarn-v$YARN_VERSION.tar.gz"
+YARN_INSTALL_DIR="$HOME/.yarn"
+
+# Create installation directory
+mkdir -p $YARN_INSTALL_DIR
+
+# Download and extract Yarn
+curl -L $YARN_URL | tar -xz -C $YARN_INSTALL_DIR --strip-components=1
+
+# Add Yarn to PATH
+export PATH="$YARN_INSTALL_DIR/bin:$PATH"
+
+# Verify installation
+yarn --version
+
+# Download and install Node.js 20.11.0
+NODE_VERSION="20.11.0"
+NODE_URL="https://nodejs.org/dist/v$NODE_VERSION/node-v$NODE_VERSION-darwin-x64.tar.gz"
+NODE_INSTALL_DIR="$HOME/.node"
+
+# Create installation directory
+mkdir -p $NODE_INSTALL_DIR
+
+# Download and extract Node.js
+curl -L $NODE_URL | tar -xz -C $NODE_INSTALL_DIR --strip-components=1
+
+# Add Node.js to PATH
+export PATH="$NODE_INSTALL_DIR/bin:$PATH"
+
+# Verify installation
+node --version
